@@ -8,6 +8,7 @@ class PygameRenderer(BaseRenderer):
     def __init__(self, width, heigth, tile_size):
         super().__init__()
         self.tile_size = tile_size
+        pygame.init()
         self.display = pygame.display.set_mode((width * tile_size, heigth * tile_size))
         pygame.display.set_caption('Snake')
 
