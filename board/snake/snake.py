@@ -22,11 +22,12 @@ class Snake:
             self.direction = SnakeDirection.LEFT
     
     def move(self):
-        for i in range(len(self.body) - 1, 0, -1):
-            self.body[i].x = self.body[i - 1].x
-            self.body[i].y = self.body[i - 1].y
-        self.body[0].x = self.head.x
-        self.body[0].y = self.head.y
+        if self.body:
+            for i in range(len(self.body) - 1, 0, -1):
+                self.body[i].x = self.body[i - 1].x
+                self.body[i].y = self.body[i - 1].y
+            self.body[0].x = self.head.x
+            self.body[0].y = self.head.y
 
         if self.direction == SnakeDirection.UP:
             self.head.y -= 1
@@ -40,12 +41,11 @@ class Snake:
     def grow(self):
         x = self.head.x
         y = self.head.y
-        type = BodyPartType.HEAD
+        type = BodyPartType.BODY
         
         if len(self.body) != 0:
-            x = self.body[len(self.body) - 1].x
-            y = self.body[len(self.body) - 1].y
-            type = BodyPartType.BODY
+            x = self.body[-1].x
+            y = self.body[-1].y
         
         new_body_part = self.body_part_factory.create_body_part(x, y, type)
         self.body.append(new_body_part)
