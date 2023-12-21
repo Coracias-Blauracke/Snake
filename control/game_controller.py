@@ -44,4 +44,4 @@ class GameController:
     def render(self):
         for renderer in self.renderers:
             renderer.render(self.board)
-            pygame.time.wait(100)
+        pygame.time.wait(200)
